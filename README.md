@@ -5,10 +5,9 @@
 
 # Packer Templates 
 
-To create the template execute **packer build -var-file variables.json ubuntu18.json** 
+To create the template execute **packer build -force -var-file variables.json -var-file isovars.json ./linux/ubuntu/ubuntu18.json** 
 
 **Credentials:**
 
 Username: packer
-
 Password: packer
