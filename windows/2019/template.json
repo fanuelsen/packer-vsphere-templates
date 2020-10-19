@@ -4,13 +4,11 @@
     "iso_url": "https://software-download.microsoft.com/download/pr/17763.737.190906-2324.rs5_release_svc_refresh_SERVER_EVAL_x64FRE_en-us_1.iso",
     "vm_name_gui": "windows2019-server-gui",
     "vm_name_core": "windows2019-server-core",
-    "vmware_guest_type": "windows9Server64Guest",
     "vbox_guest_type": "windows2019_64",
     "boot_wait": "5m",
     "vcpus": "2",
     "ram": "4096",
     "disk_size": "40000",
-    "disk_controller_type": "lsilogic-sas",
     "network_card": "vmxnet3",
     "folder": "Templates"
 }
