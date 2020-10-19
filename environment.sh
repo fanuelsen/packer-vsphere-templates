@@ -9,7 +9,7 @@ sha256_2004=$(curl "$url_2004/SHA256SUMS" | grep server-amd64.iso | sort -r | he
 
 echo "==> Getting latest windows iso url"
 url_win2019=https://www.microsoft.com/en-US/evalcenter/evaluate-windows-server-2019?filetype=ISO
-iso_win2019=$(curl "$url_win2019" | grep .iso | grep en-us | sed -ne 's/.*\(https[^"]*\).*/\1/p' | sed 's/&quot;//g' | sed ':%s/^M//g' )
+iso_win2019=$(curl "$url_win2019" | grep .iso | grep en-us | sed -ne 's/.*\(https[^"]*\).*/\1/p' | sed 's/&quot;//g' | tr -d "\r" )
 
 echo "==> Populate iso variable"
 cat > isovars.json <<EOF
