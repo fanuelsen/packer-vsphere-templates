@@ -4,5 +4,6 @@
   "iso_url_2004": "http://cdimage.ubuntu.com/ubuntu-legacy-server/releases/20.04/release/ubuntu-20.04.1-legacy-server-amd64.iso",
   "iso_checksum_2004": "f11bda2f2caed8f420802b59f382c25160b114ccc665dbac9c5046e7fceaced2",
   "iso_url_win2019": "https://software-download.microsoft.com/download/pr/17763.737.190906-2324.rs5_release_svc_refresh_SERVER_EVAL_x64FRE_en-us_1.iso",
+  "iso_checksum_win2019": "549bca46c055157291be6c22a3aaaed8330e78ef4382c99ee82c896426a1cee1",
   "iso_checksum_type": "sha256"
 }
