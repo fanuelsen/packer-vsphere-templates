@@ -12,9 +12,10 @@ Populate variables.json or edit environment.sh to generate environment variables
 |```"vcenter_server":"0.0.0.0",```|
 |```"vcenter_username":"administrator@vsphere.local",```|
 |```"vcenter_password":"password",``` |
-|```"vsphere_cluster": "vspherecluser",```|
+|```"vsphere_cluster": "vspherecluster",```|
 |```"vsphere_datacenter": "vspherepool",```|
 |```"vsphere_datastore": "vspheredatastore",```|
+|```"vsphere_network": "vspherevlan"```|
 
 **Or edit and run environemnt.sh to set temp env variables**
 | environment.sh | 
@@ -24,8 +25,14 @@ Remember both dots
 
 
 **Step2: Build the template**
-To create the template execute **packer build -force -only=vsphere-iso -var-file variables.json -var-file isovars.json ./linux/ubuntu/ubuntu1804.json** 
+To create a template execute **packer build -force -only=vsphere-iso -var-file variables.json -var-file isovars.json ./linux/ubuntu/ubuntu1804.json** 
 
 **Credentials:**
+
+**Linux**
 Username: packer
+Password: packer
+
+**Windows**
+Username: Administrator
 Password: packer
