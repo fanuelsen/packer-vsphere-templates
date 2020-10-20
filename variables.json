@@ -1,0 +1,28 @@
+{
+  "vm_name_1804": "ubuntu-18.04",
+  "vm_name_2004": "ubuntu-20.04",
+  "vm_name_2019_gui": "windows-2019-gui",
+  "vm_name_2019_core": "windows-2019-core",
+  "vcenter_server":"{{ env `VCENTER_SERVER` }}",
+  "vsphere_datacenter": "{{ env `VSPHERE_DATACENTER` }}",
+  "vsphere_cluster": "{{ env `VSPHERE_CLUSTER` }}",
+  "vsphere_datastore": "{{ env `VSPHERE_DATASTORE` }}",
+  "vcenter_username":"{{ env `VCENTER_USERNAME` }}",
+  "vcenter_password":"{{ env `VCENTER_PASSWORD` }}",
+
+  
+  "folder": "templates",
+  "network": "VM Network",
+  
+  "vm_cpu_num": "1",
+  "vm_mem_size": "4096",
+  "vm_disk_size": "20480",
+  "vm_boot_wait": "5m",
+    
+  "ssh_username": "packer",
+  "ssh_password": "packer",
+  "winrm_username": "packer",
+  "winrm_password": "packer",
+  
+  "disable_ipv6": "true"
+}
