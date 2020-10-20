@@ -22,8 +22,8 @@
       "iso_urls": "{{user `iso_url_2004`}}",
       "ssh_password": "{{user `ssh_password`}}",
       "ssh_username": "{{user `ssh_username`}}",
-      "http_directory": "http",
       "notes": "{{ isotime }}",
+      "floppy_files": ["./media/preseed.cfg"],
       "boot_command": [
         "<esc><wait>",
         "<esc><wait>",
@@ -32,7 +32,7 @@
         " initrd=/install/initrd.gz",
         " priority=critical",
         " locale=en_US",
-        " preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg<wait>",
+        " file=/media/preseed.cfg",
         "<enter>"
       ],
       "network_adapters": [
