@@ -4,15 +4,14 @@
   "vm_name_2019_gui": "windows-2019-gui",
   "vm_name_2019_core": "windows-2019-core",
   "vcenter_server":"{{ env `VCENTER_SERVER` }}",
+  "vcenter_username":"{{ env `VCENTER_USERNAME` }}",
+  "vcenter_password":"{{ env `VCENTER_PASSWORD` }}",
   "vsphere_datacenter": "{{ env `VSPHERE_DATACENTER` }}",
   "vsphere_cluster": "{{ env `VSPHERE_CLUSTER` }}",
   "vsphere_datastore": "{{ env `VSPHERE_DATASTORE` }}",
-  "vcenter_username":"{{ env `VCENTER_USERNAME` }}",
-  "vcenter_password":"{{ env `VCENTER_PASSWORD` }}",
+  "vsphere_network": "{{ env `VSPHERE_NETWORK` }}",
 
-  
   "folder": "templates",
-  "network": "VM Network",
   
   "vm_cpu_num": "1",
   "vm_mem_size": "4096",
