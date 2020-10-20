@@ -17,6 +17,10 @@ Populate variables.json or edit environment.sh to generate environment variables
 |```"vsphere_datastore": "vspheredatastore",```|
 
 **Or edit and run environemnt.sh to set temp env variables**
+| environment.sh | 
+|-|
+|```. ./environment.sh```|
+Remember both dots
 
 
 **Step2: Build the template**
