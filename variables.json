@@ -20,7 +20,7 @@
     
   "ssh_username": "packer",
   "ssh_password": "packer",
-  "winrm_username": "packer",
+  "winrm_username": "Administrator",
   "winrm_password": "packer",
   
   "disable_ipv6": "true"
