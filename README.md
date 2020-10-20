@@ -4,7 +4,7 @@
 </div><br>
 
 **Step1: Prepare the environemnt**
-Populate variables.json and run environment.sh to generate newest isos url and chksum. (Windows chksum takes some time)
+Populate variables.json or edit environment.sh to generate environment variables for vsphere. To update isos url and chksum run getiso.sh (Windows chksum takes some time)
 
 **Variables that needs to be changed:**
 | variables.json | 
@@ -16,8 +16,11 @@ Populate variables.json and run environment.sh to generate newest isos url and c
 |```"vsphere_datacenter": "vspherepool",```|
 |```"vsphere_datastore": "vspheredatastore",```|
 
+**Or edit and run environemnt.sh to set temp env variables**
+
+
 **Step2: Build the template**
-To create the template execute **packer build -force -var-file variables.json -var-file isovars.json ./linux/ubuntu/ubuntu1804.json** 
+To create the template execute **packer build -force -only=vsphere-iso -var-file variables.json -var-file isovars.json ./linux/ubuntu/ubuntu1804.json** 
 
 **Credentials:**
 Username: packer
