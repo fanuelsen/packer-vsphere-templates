@@ -27,10 +27,13 @@
       "winrm_use_ssl": true,
       "winrm_username": "{{ user `winrm_username` }}",
       "notes": "{{ isotime }}",
-      "shutdown_command": "shutdown /s /t 5 /f /d p:4:1 /c \"Packer Shutdown\"",
+      "shutdown_command": "a:/sysprep.bat",
+      "shutdown_timeout": "1h",
       "floppy_files": [
         "answer_files/2019/core/autounattend.xml",
-        "scripts/vmware_tools.ps1"
+        "scripts/vmware_tools.ps1",
+        "scripts/unattend.xml",
+        "scripts/sysprep.bat"
       ],
       "network_adapters": [
         {
@@ -51,13 +54,13 @@
     {
       "type": "virtualbox-iso",
       "guest_os_type": "{{ user `vbox_guest_type` }}",
-      "vm_name": "{{ user `vm_name` }}",
-      "iso_url": "{{ user `iso_url` }}",
-      "iso_checksum": "{{ user `iso_checksum` }}",
+      "vm_name": "{{ user `vm_name_2019_core` }}",
+      "iso_url": "{{ user `iso_url_win2019` }}",
+      "iso_checksum": "{{ user `iso_checksum_win2019` }}",
       "guest_additions_mode": "disable",
       "headless": false,
       "boot_wait": "{{ user `vm_boot_wait` }}",
-      "disk_size": "{{ user `disk_size` }}",
+      "disk_size": "{{ user `vm_disk_size` }}",
       "communicator": "winrm",
       "winrm_username": "{{ user `winrm_username` }}",
       "winrm_password": "{{ user `winrm_password` }}",
@@ -67,11 +70,11 @@
       "floppy_files": [
         "answer_files/2019/core/autounattend.xml"
       ],
-      "shutdown_command": "shutdown /s /t 5 /f /d p:4:1 /c \"Packer Shutdown\"",
-      "shutdown_timeout": "30m",
+      "shutdown_command": "a:/sysprep.bat",
+      "shutdown_timeout": "1h",
       "vboxmanage": [
-        ["modifyvm","{{ .Name }}","--memory","{{ user `ram` }}"],
-        ["modifyvm","{{ .Name }}","--cpus","{{ user `vcpus` }}"]
+        ["modifyvm","{{ .Name }}","--memory","{{ user `vm_mem_size` }}"],
+        ["modifyvm","{{ .Name }}","--cpus","{{ user `vm_cpu_num` }}"]
       ]
     }
   ],
@@ -80,33 +83,6 @@
       "type": "powershell",
       "only": ["virtualbox-iso"],
       "scripts": ["scripts/virtualbox-guest-additions.ps1"],
-      "pause_before": "1m"
-    },
-    {
-      "type": "windows-restart",
-      "restart_timeout": "30m"
-    },
-    {
-      "type": "powershell",
-      "scripts": ["scripts/windows_updates.ps1"],
-      "pause_before": "1m"
-    },
-    {
-      "type": "windows-restart",
-      "restart_timeout": "30m"
-    },
-    {
-      "type": "powershell",
-      "scripts": ["scripts/windows_updates.ps1"],
-      "pause_before": "1m"
-    },
-    {
-      "type": "windows-restart",
-      "restart_timeout": "30m"
-    },
-    {
-      "type": "powershell",
-      "scripts": ["scripts/windows_updates.ps1"],
       "pause_before": "1m"
     },
     {
