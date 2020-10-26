@@ -3,6 +3,7 @@
   "vm_name_2004": "ubuntu-20.04",
   "vm_name_2019_gui": "windows-2019-gui",
   "vm_name_2019_core": "windows-2019-core",
+  
   "vcenter_server":"{{ env `VCENTER_SERVER` }}",
   "vcenter_username":"{{ env `VCENTER_USERNAME` }}",
   "vcenter_password":"{{ env `VCENTER_PASSWORD` }}",
@@ -11,6 +12,8 @@
   "vsphere_datastore": "{{ env `VSPHERE_DATASTORE` }}",
   "vsphere_network": "{{ env `VSPHERE_NETWORK` }}",
 
+  "vbox_guest_type": "Windows2019_64",
+  
   "folder": "templates",
   
   "vm_cpu_num": "2",

@@ -68,7 +68,9 @@
       "winrm_insecure": true,
       "winrm_timeout": "4h",
       "floppy_files": [
-        "answer_files/2019/core/autounattend.xml"
+        "answer_files/2019/core/autounattend.xml",
+        "scripts/unattend.xml",
+        "scripts/sysprep.bat"
       ],
       "shutdown_command": "a:/sysprep.bat",
       "shutdown_timeout": "1h",
