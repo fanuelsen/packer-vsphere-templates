@@ -3,7 +3,7 @@
     {
       "type": "vsphere-iso",
       "guest_os_type": "windows9Server64Guest",
-      "vm_name": "{{ user `vm_name_2019_gui }}",
+      "vm_name": "{{ user `vm_name_2019_gui` }}",
       "cpus": "{{ user `vm_cpu_num` }}",
       "ram": "{{ user `vm_mem_size` }}",
       "disk_controller_type": "lsilogic-sas",
