@@ -27,13 +27,12 @@
       "winrm_use_ssl": true,
       "winrm_username": "{{ user `winrm_username` }}",
       "notes": "{{ isotime }}",
-      "shutdown_command": "a:/sysprep.bat",
-      "shutdown_timeout": "1h",
+      "shutdown_command": "shutdown /s /t 5 /f /d p:4:1 /c \"Packer Shutdown\"",
+      "shutdown_timeout": "30m",
       "floppy_files": [
         "answer_files/2019/core/autounattend.xml",
         "scripts/vmware_tools.ps1",
-        "scripts/unattend.xml",
-        "scripts/sysprep.bat"
+        "scripts/enablewinrmbasic.ps1"
       ],
       "network_adapters": [
         {
@@ -68,11 +67,9 @@
       "winrm_insecure": true,
       "winrm_timeout": "4h",
       "floppy_files": [
-        "answer_files/2019/core/autounattend.xml",
-        "scripts/unattend.xml",
-        "scripts/sysprep.bat"
+        "answer_files/2019/core/autounattend.xml"
       ],
-      "shutdown_command": "a:/sysprep.bat",
+      "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c",
       "shutdown_timeout": "1h",
       "vboxmanage": [
         ["modifyvm","{{ .Name }}","--memory","{{ user `vm_mem_size` }}"],
