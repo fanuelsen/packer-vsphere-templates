@@ -28,6 +28,7 @@
       "winrm_username": "{{ user `winrm_username` }}",
       "notes": "{{ isotime }}",
       "shutdown_command": "shutdown /s /t 5 /f /d p:4:1 /c \"Packer Shutdown\"",
+      "shutdown_timeout": "30m",
       "floppy_files": [
         "answer_files/2019/gui/autounattend.xml",
         "scripts/vmware_tools.ps1"
