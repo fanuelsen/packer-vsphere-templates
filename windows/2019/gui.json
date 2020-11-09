@@ -52,9 +52,9 @@
     {
       "type": "virtualbox-iso",
       "guest_os_type": "{{ user `vbox_guest_type` }}",
-      "vm_name": "{{ user `vm_name` }}",
-      "iso_url": "{{ user `iso_url` }}",
-      "iso_checksum": "{{ user `iso_checksum` }}",
+      "vm_name": "{{ user `vm_name_2019_gui` }}",
+      "iso_url": "{{ user `iso_url_win2019` }}",
+      "iso_checksum": "{{ user `iso_checksum_win2019` }}",
       "guest_additions_mode": "disable",
       "headless": false,
       "boot_wait": "{{ user `vm_boot_wait` }}",
@@ -85,6 +85,7 @@
     },
     {
       "type": "windows-restart",
+      "only": ["virtualbox-iso"],
       "restart_timeout": "30m"
     },
     {

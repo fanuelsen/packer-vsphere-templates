@@ -129,7 +129,7 @@
                 </SynchronousCommand>
                 <SynchronousCommand wcm:action="add">
                     <CommandLine>%SystemRoot%\system32\WindowsPowerShell\v1.0\powershell.exe -Command New-SelfSignedCertificate -CertstoreLocation Cert:\LocalMachine\My -DnsName "WinRMPackerCert"</CommandLine>
-                    <Description>Certificate for WinRM used by Packer when creating image</Description>
+                    <Description>Certificate for WinRM used by Packer when creating</Description>
                     <Order>2</Order>
                     <RequiresUserInput>true</RequiresUserInput>
                 </SynchronousCommand>
