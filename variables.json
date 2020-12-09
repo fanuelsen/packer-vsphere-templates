@@ -1,8 +1,10 @@
 {
   "vm_name_1804": "ubuntu-18.04",
   "vm_name_2004": "ubuntu-20.04",
+  "vm_name_2012_gui": "windows-2012-gui",
   "vm_name_2019_gui": "windows-2019-gui",
   "vm_name_2019_core": "windows-2019-core",
+  "vm_name_win10": "windows-10",
   
   "vcenter_server":"{{ env `VCENTER_SERVER` }}",
   "vcenter_username":"{{ env `VCENTER_USERNAME` }}",
@@ -16,10 +18,10 @@
   
   "folder": "templates",
   
-  "vm_cpu_num": "2",
-  "vm_mem_size": "4096",
-  "vm_disk_size": "20480",
-  "vm_boot_wait": "5m",
+  "vm_cpu_num": "4",
+  "vm_mem_size": "8192",
+  "vm_disk_size": "30720",
+  "vm_boot_wait": "10m",
     
   "ssh_username": "packer",
   "ssh_password": "packer",

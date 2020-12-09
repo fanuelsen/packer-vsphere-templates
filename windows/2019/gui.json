@@ -58,7 +58,7 @@
       "guest_additions_mode": "disable",
       "headless": false,
       "boot_wait": "{{ user `vm_boot_wait` }}",
-      "disk_size": "{{ user `disk_size` }}",
+      "disk_size": "{{ user `vm_disk_size` }}",
       "communicator": "winrm",
       "winrm_username": "{{ user `winrm_username` }}",
       "winrm_password": "{{ user `winrm_password` }}",
@@ -69,10 +69,10 @@
         "answer_files/2019/core/autounattend.xml"
       ],
       "shutdown_command": "shutdown /s /t 5 /f /d p:4:1 /c \"Packer Shutdown\"",
-      "shutdown_timeout": "30m",
+      "shutdown_timeout": "1h",
       "vboxmanage": [
-        ["modifyvm","{{ .Name }}","--memory","{{ user `ram` }}"],
-        ["modifyvm","{{ .Name }}","--cpus","{{ user `vcpus` }}"]
+        ["modifyvm","{{ .Name }}","--memory","{{ user `vm_mem_size` }}"],
+        ["modifyvm","{{ .Name }}","--cpus","{{ user `vm_cpu_num` }}"]
       ]
     }
   ],
@@ -89,36 +89,7 @@
       "restart_timeout": "30m"
     },
     {
-      "type": "powershell",
-      "scripts": ["scripts/windows_updates.ps1"],
-      "pause_before": "1m"
-    },
-    {
-      "type": "windows-restart",
-      "restart_timeout": "30m"
-    },
-    {
-      "type": "powershell",
-      "scripts": ["scripts/windows_updates.ps1"],
-      "pause_before": "1m"
-    },
-    {
-      "type": "windows-restart",
-      "restart_timeout": "30m"
-    },
-    {
-      "type": "powershell",
-      "scripts": ["scripts/windows_updates.ps1"],
-      "pause_before": "1m"
-    },
-    {
-      "type": "windows-restart",
-      "restart_timeout": "30m"
-    },
-    {
-      "type": "powershell",
-      "scripts": ["scripts/cleanup.ps1"],
-      "pause_before": "1m"
+      "type": "windows-update"
     }
   ]
 }

@@ -2,8 +2,8 @@
   "builders": [
     {
       "type": "vsphere-iso",
-      "guest_os_type": "windows9Server64Guest",
-      "vm_name": "{{ user `vm_name_2019_core` }}",
+      "guest_os_type": "windows9_64Guest",
+      "vm_name": "{{ user `vm_name_win10` }}",
       "cpus": "{{ user `vm_cpu_num` }}",
       "ram": "{{ user `vm_mem_size` }}",
       "disk_controller_type": "lsilogic-sas",
@@ -16,8 +16,8 @@
       "password": "{{ user `vcenter_password` }}",
       "folder": "{{user `folder`}}",
       "convert_to_template": true,
-      "iso_checksum": "{{ user `iso_checksum_type` }}:{{ user `iso_checksum_win2019` }}",
-      "iso_url": "{{ user `iso_url_win2019` }}",
+      "iso_checksum": "{{ user `iso_checksum_type` }}:{{ user `iso_checksum_win10` }}",
+      "iso_url": "{{ user `iso_url_win10` }}",
       "ip_wait_timeout": "50m",
       "boot_wait": "{{ user `vm_boot_wait` }}",
       "communicator": "winrm",
@@ -30,7 +30,7 @@
       "shutdown_command": "shutdown /s /t 5 /f /d p:4:1 /c \"Packer Shutdown\"",
       "shutdown_timeout": "30m",
       "floppy_files": [
-        "answer_files/2019/core/autounattend.xml",
+        "answer_files/10/autounattend.xml",
         "scripts/vmware_tools.ps1"
       ],
       "network_adapters": [
@@ -52,13 +52,13 @@
     {
       "type": "virtualbox-iso",
       "guest_os_type": "{{ user `vbox_guest_type` }}",
-      "vm_name": "{{ user `vm_name_2019_core` }}",
-      "iso_url": "{{ user `iso_url_win2019` }}",
-      "iso_checksum": "{{ user `iso_checksum_win2019` }}",
+      "vm_name": "{{ user `vm_name_win10` }}",
+      "iso_url": "{{ user `iso_url_win10` }}",
+      "iso_checksum": "{{ user `iso_checksum_win10` }}",
       "guest_additions_mode": "disable",
       "headless": false,
       "boot_wait": "{{ user `vm_boot_wait` }}",
-      "disk_size": "{{ user `vm_disk_size` }}",
+      "disk_size": "{{ user `disk_size` }}",
       "communicator": "winrm",
       "winrm_username": "{{ user `winrm_username` }}",
       "winrm_password": "{{ user `winrm_password` }}",
@@ -66,13 +66,13 @@
       "winrm_insecure": true,
       "winrm_timeout": "4h",
       "floppy_files": [
-        "answer_files/2019/core/autounattend.xml"
+        "answer_files/10/autounattend.xml"
       ],
       "shutdown_command": "shutdown /s /t 5 /f /d p:4:1 /c \"Packer Shutdown\"",
-      "shutdown_timeout": "1h",
+      "shutdown_timeout": "30m",
       "vboxmanage": [
-        ["modifyvm","{{ .Name }}","--memory","{{ user `vm_mem_size` }}"],
-        ["modifyvm","{{ .Name }}","--cpus","{{ user `vm_cpu_num` }}"]
+        ["modifyvm","{{ .Name }}","--memory","{{ user `ram` }}"],
+        ["modifyvm","{{ .Name }}","--cpus","{{ user `vcpus` }}"]
       ]
     }
   ],
