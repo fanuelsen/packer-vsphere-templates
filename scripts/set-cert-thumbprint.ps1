@@ -1,0 +1,2 @@
+$thumbprint = ( Get-ChildItem -Path cert: -Recurse | Where-Object { $_.subject -eq "CN=WinRMCert" } | Select-Object -ExpandProperty Thumbprint | Select-Object -First 1 )
+winrm set winrm/config/service "@{CertificateThumbprint=`"$($thumbprint)`"}"

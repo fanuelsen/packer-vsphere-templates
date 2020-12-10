@@ -91,6 +91,11 @@
       "restart_timeout": "30m"
     },
     {
+      "type": "powershell",
+      "scripts": ["scripts/set-cert-thumbprint.ps1"],
+      "pause_before": "1m"
+    },
+    {
       "type": "windows-update"
     }
   ]
