@@ -31,9 +31,7 @@
       "shutdown_timeout": "30m",
       "floppy_files": [
         "answer_files/2012/gui/autounattend.xml",
-        "scripts/vmware_tools.ps1",
-        "scripts/windows_updates.ps1",
-        "scripts/microsoft-updates.cmd"
+        "scripts/vmware_tools.ps1"
       ],
       "network_adapters": [
         {
@@ -91,12 +89,30 @@
       "restart_timeout": "30m"
     },
     {
+      "type": "windows-restart",
+      "restart_timeout": "30m"
+    },
+    {
       "type": "powershell",
       "scripts": ["scripts/set-cert-thumbprint.ps1"],
       "pause_before": "1m"
     },
     {
       "type": "windows-update"
+    },
+    {
+      "type": "powershell",
+      "script": "scripts/upgrade-wmf.ps1",
+      "elevated_user": "Administrator",
+      "elevated_password": "packer",
+      "valid_exit_codes": [
+        0,
+        3010
+      ]
+    },
+    {
+      "type": "windows-restart",
+      "restart_timeout": "30m"
     }
   ]
 }
