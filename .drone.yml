@@ -12,7 +12,11 @@ steps:
       from_secret: REGISTRY_PASSWORD
     repo: harbor.horten.kommune.no/private/packer
     registry: harbor.horten.kommune.no
-
+    tags: 
+      - latest
+      - '1.0.0'
+      - '1.0'
+      - '1'
   commands:
      - packer build -force -only=vsphere-iso -var-file=variables.json -var-file=isovars.json ./linux/ubuntu/ubuntu2004.json
   environment:
@@ -45,6 +49,11 @@ steps:
       from_secret: REGISTRY_PASSWORD
     repo: harbor.horten.kommune.no/private/packer
     registry: harbor.horten.kommune.no
+    tags: 
+      - latest
+      - '1.0.0'
+      - '1.0'
+      - '1'
   commands:
      - packer build -force -only=vsphere-iso -var-file=variables.json -var-file=isovars.json ./windows/2019/core.json
   environment:
@@ -70,6 +79,11 @@ steps:
       from_secret: REGISTRY_PASSWORD
     repo: harbor.horten.kommune.no/private/packer
     registry: harbor.horten.kommune.no
+    tags: 
+      - latest
+      - '1.0.0'
+      - '1.0'
+      - '1'
   commands:
      - packer build -force -only=vsphere-iso -var-file=variables.json -var-file=isovars.json ./windows/2019/gui.json
   environment:
