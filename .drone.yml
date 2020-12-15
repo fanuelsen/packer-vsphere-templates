@@ -58,9 +58,6 @@ steps:
     VSPHERE_NETWORK:
       from_secret: vsphere_network
 
-image_pull_secrets:
-- dockerconfig
-
 - name: teams-webhook
   image: jdamata/drone-teams
   settings:
@@ -70,4 +67,7 @@ image_pull_secrets:
      status: 
      - success
      - failure
+
+image_pull_secrets:
+- dockerconfig
      
