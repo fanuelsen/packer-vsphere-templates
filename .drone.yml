@@ -20,10 +20,7 @@ steps:
     VSPHERE_DATASTORE:
       from_secret: vsphere_datastore
     VSPHERE_NETWORK:
-      from_secret: vsphere_network
-image_pull_secrets:
-- dockerconfig
-  
+      from_secret: vsphere_network 
 
 - name: build-windows-core-2019
   image: harbor.horten.kommune.no/private/packer
@@ -42,8 +39,6 @@ image_pull_secrets:
       from_secret: vsphere_datastore
     VSPHERE_NETWORK:
       from_secret: vsphere_network
-image_pull_secrets:
-- dockerconfig
 
 - name: build-windows-gui-2019
   image: harbor.horten.kommune.no/private/packer
@@ -62,6 +57,7 @@ image_pull_secrets:
       from_secret: vsphere_datastore
     VSPHERE_NETWORK:
       from_secret: vsphere_network
+
 image_pull_secrets:
 - dockerconfig
 
