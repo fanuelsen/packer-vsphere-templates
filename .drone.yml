@@ -1,4 +1,5 @@
 kind: pipeline
+type: docker
 name: packer
 
 
@@ -21,8 +22,8 @@ steps:
     VSPHERE_NETWORK:
       from_secret: vsphere_network
 image_pull_secrets:
-  DOCKERCONFIG:
-    from_secret: dockerconfig
+- dockerconfig
+  
 
 - name: build-windows-core-2019
   image: harbor.horten.kommune.no/private/packer
