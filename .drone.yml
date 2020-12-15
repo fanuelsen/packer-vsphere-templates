@@ -2,10 +2,9 @@ kind: pipeline
 type: docker
 name: packer
 
-
 steps:
 - name: build-ubuntu
-  image: harbor.horten.kommune.no/private/packer
+  image: harbor.horten.kommune.no/library/packer
   commands:
      - packer build -force -only=vsphere-iso -var-file=variables.json -var-file=isovars.json ./linux/ubuntu/ubuntu2004.json
   environment:
@@ -23,7 +22,7 @@ steps:
       from_secret: vsphere_network 
 
 - name: build-windows-core-2019
-  image: harbor.horten.kommune.no/private/packer
+  image: harbor.horten.kommune.no/library/packer
   commands:
      - packer build -force -only=vsphere-iso -var-file=variables.json -var-file=isovars.json ./windows/2019/core.json
   environment:
@@ -41,7 +40,7 @@ steps:
       from_secret: vsphere_network
 
 - name: build-windows-gui-2019
-  image: harbor.horten.kommune.no/private/packer
+  image: harbor.horten.kommune.no/library/packer
   commands:
      - packer build -force -only=vsphere-iso -var-file=variables.json -var-file=isovars.json ./windows/2019/gui.json
   environment:
@@ -70,4 +69,3 @@ steps:
 
 image_pull_secrets:
 - dockerconfig
-     
