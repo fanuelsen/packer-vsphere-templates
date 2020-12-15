@@ -4,19 +4,7 @@ name: packer
 
 steps:
 - name: build-ubuntu
-  image: plugins/docker
-  settings:
-    username:
-      from_secret: REGISTRY_USER
-    password:
-      from_secret: REGISTRY_PASSWORD
-    repo: harbor.horten.kommune.no/private/packer
-    registry: harbor.horten.kommune.no
-    tags: 
-      - latest
-      - '1.0.0'
-      - '1.0'
-      - '1'
+  image: harbor.horten.kommune.no/private/packer
   commands:
      - packer build -force -only=vsphere-iso -var-file=variables.json -var-file=isovars.json ./linux/ubuntu/ubuntu2004.json
   environment:
@@ -32,28 +20,12 @@ steps:
       from_secret: vsphere_datastore
     VSPHERE_NETWORK:
       from_secret: vsphere_network
+image_pull_secrets:
+- dockerconfig
+
 
 - name: build-windows-core-2019
-  image: plugins/docker
-  settings:
-    username:
-      from_secret: REGISTRY_USER
-    password:
-      from_secret: REGISTRY_PASSWORD
-    repo: harbor.horten.kommune.no/private/packer
-    registry: harbor.horten.kommune.no
-  settings:
-    username:
-      from_secret: REGISTRY_USER
-    password:
-      from_secret: REGISTRY_PASSWORD
-    repo: harbor.horten.kommune.no/private/packer
-    registry: harbor.horten.kommune.no
-    tags: 
-      - latest
-      - '1.0.0'
-      - '1.0'
-      - '1'
+  image: harbor.horten.kommune.no/private/packer
   commands:
      - packer build -force -only=vsphere-iso -var-file=variables.json -var-file=isovars.json ./windows/2019/core.json
   environment:
@@ -69,21 +41,11 @@ steps:
       from_secret: vsphere_datastore
     VSPHERE_NETWORK:
       from_secret: vsphere_network
+image_pull_secrets:
+- dockerconfig
 
 - name: build-windows-gui-2019
-  image: plugins/docker
-  settings:
-    username:
-      from_secret: REGISTRY_USER
-    password:
-      from_secret: REGISTRY_PASSWORD
-    repo: harbor.horten.kommune.no/private/packer
-    registry: harbor.horten.kommune.no
-    tags: 
-      - latest
-      - '1.0.0'
-      - '1.0'
-      - '1'
+  image: harbor.horten.kommune.no/private/packer
   commands:
      - packer build -force -only=vsphere-iso -var-file=variables.json -var-file=isovars.json ./windows/2019/gui.json
   environment:
@@ -99,6 +61,8 @@ steps:
       from_secret: vsphere_datastore
     VSPHERE_NETWORK:
       from_secret: vsphere_network
+image_pull_secrets:
+- dockerconfig
 
 - name: teams-webhook
   image: jdamata/drone-teams
