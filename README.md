@@ -9,13 +9,15 @@ Populate variables.json or edit environment.sh to generate environment variables
 **Variables that needs to be changed:**
 | variables.json | 
 |-|
-|```"vcenter_server":"0.0.0.0",```|
-|```"vcenter_username":"administrator@vsphere.local",```|
-|```"vcenter_password":"password",``` |
-|```"vsphere_cluster": "vspherecluster",```|
-|```"vsphere_datacenter": "vspherepool",```|
-|```"vsphere_datastore": "vspheredatastore",```|
-|```"vsphere_network": "vspherevlan"```|
+```json
+"vcenter_server":"0.0.0.0",
+"vcenter_username":"administrator@vsphere.local",
+"vcenter_password":"password",
+"vsphere_cluster": "vspherecluster",
+"vsphere_datacenter": "vspherepool",
+"vsphere_datastore": "vspheredatastore",
+"vsphere_network": "vspherevlan"
+```
 
 **Or edit and run environemnt.sh to set temp env variables**
 | environment.sh | 
@@ -25,13 +27,15 @@ Remember both dots
 
 **Step2: Build the template of your choosing**
 | | 
-|-| 
-| packer build -force -only=vsphere-iso -var-file variables.json -var-file isovars.json ./linux/ubuntu/ubuntu1804.json |
-| packer build -force -only=vsphere-iso -var-file variables.json -var-file isovars.json ./linux/ubuntu/ubuntu2004.json |
-| packer build -force -only=vsphere-iso -var-file variables.json -var-file isovars.json ./linux/windows/10/win10.json |
-| packer build -force -only=vsphere-iso -var-file variables.json -var-file isovars.json ./linux/windows/2012/gui.json |
-| packer build -force -only=vsphere-iso -var-file variables.json -var-file isovars.json ./linux/windows/2019/core.json |
-| packer build -force -only=vsphere-iso -var-file variables.json -var-file isovars.json ./linux/windows/2019/gui.json |
+
+```
+packer build -force -only=vsphere-iso -var-file variables.json -var-file isovars.json ./linux/ubuntu/ubuntu1804.json 
+packer build -force -only=vsphere-iso -var-file variables.json -var-file isovars.json ./linux/ubuntu/ubuntu2004.json 
+packer build -force -only=vsphere-iso -var-file variables.json -var-file isovars.json ./linux/windows/10/win10.json
+packer build -force -only=vsphere-iso -var-file variables.json -var-file isovars.json ./linux/windows/2012/gui.json
+packer build -force -only=vsphere-iso -var-file variables.json -var-file isovars.json ./linux/windows/2019/core.json
+packer build -force -only=vsphere-iso -var-file variables.json -var-file isovars.json ./linux/windows/2019/gui.json
+```
 
 **Credentials:**
 
