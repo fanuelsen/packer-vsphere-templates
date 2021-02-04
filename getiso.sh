@@ -19,7 +19,7 @@ sha256_win2019=$(curl -s "$iso_win2019" | openssl sha256)
 
 echo "==> Setting windows 10 iso path manually as this is impossible to curl"
 iso_win10=iso/Win10_20H2_Norwegian_x64.iso
-sha256_win10=$(curl -s "$iso_win10" | openssl sha256)
+sha256_win10="e8887540923f793a39a90ec0bb4cd0fc1fa2d4bd9f8c3c9c87f71962fc3e816b"
 
 echo "==> Populate iso variable"
 cat > isovars.json <<EOF

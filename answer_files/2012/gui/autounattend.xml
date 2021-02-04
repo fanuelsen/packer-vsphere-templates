@@ -38,7 +38,7 @@
                         </ModifyPartition>
                         <ModifyPartition wcm:action="add">
                             <Format>NTFS</Format>
-                            <Label>Windows 2019</Label>
+                            <Label>System</Label>
                             <Letter>C</Letter>
                             <Order>2</Order>
                             <PartitionID>2</PartitionID>
@@ -89,7 +89,7 @@
         </component>
         <component xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="Microsoft-Windows-Shell-Setup" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS">
         <!-- https://docs.microsoft.com/en-us/windows-hardware/customize/desktop/unattend/microsoft-windows-shell-setup -->
-            <ComputerName>packer-win2019</ComputerName>
+            <ComputerName>packer-win2012</ComputerName>
             <TimeZone>W. Europe Standard Time</TimeZone>
         </component>
         <component xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="Microsoft-Windows-ServerManager-SvrMgrNc" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS">
@@ -128,29 +128,24 @@
                     <Description>Vmware</Description>
                 </SynchronousCommand>
                 <SynchronousCommand wcm:action="add">
-                    <CommandLine>cmd.exe /c C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe wget https://raw.githubusercontent.com/ansible/ansible/devel/examples/scripts/ConfigureRemotingForAnsible.ps1 -OutFile C:\Windows\Temp\ConfigureRemotingForAnsible.ps1</CommandLine>
+                    <CommandLine>cmd.exe /c C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File a:\ConfigureRemotingForAnsible.ps1 -ForceNewSSLCert -CertValidityDays 3650 -EnableCredSSP -SubjectName WinRMCert</CommandLine>
                     <Order>2</Order>
-                    <Description>Download Ansible Remoting Script for Configuring WinRM with CredSSP</Description>
-                </SynchronousCommand>
-                <SynchronousCommand wcm:action="add">
-                    <CommandLine>cmd.exe /c C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File C:\Windows\Temp\ConfigureRemotingForAnsible.ps1 -ForceNewSSLCert -CertValidityDays 3650 -EnableCredSSP -SubjectName WinRMCert</CommandLine>
-                    <Order>3</Order>
                     <Description>Run Ansible Remoting Script for Configuring WinRM with CredSSP</Description>
                 </SynchronousCommand>
                 <SynchronousCommand wcm:action="add">
                     <CommandLine>cmd.exe /c C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File a:\set-cert-thumbprint.ps1</CommandLine>
-                    <Order>4</Order>
+                    <Order>3</Order>
                     <Description>For CredSSP to work on 2012r2 you need to specificly assign the cert thumbprint to the service</Description>
                 </SynchronousCommand>
                 <SynchronousCommand wcm:action="add">
                     <CommandLine>%SystemRoot%\system32\WindowsPowerShell\v1.0\powershell.exe -Command Stop-Service WinRM</CommandLine>
                     <Description>Stop the WinRM service to allow the dism process to finish before packer executes scripts</Description>
-                    <Order>5</Order>
+                    <Order>4</Order>
                     <RequiresUserInput>true</RequiresUserInput>
                 </SynchronousCommand>
                 <SynchronousCommand wcm:action="add">
                     <CommandLine>%SystemRoot%\system32\WindowsPowerShell\v1.0\powershell.exe -Command dism /online /quiet /set-edition:ServerStandard /productkey:D2N9P-3P6X9-2R39C-7RTCD-MDVJX /accepteula</CommandLine>
-                    <Order>6</Order>
+                    <Order>5</Order>
                     <Description>Switch from EVAL to VL</Description>
                 </SynchronousCommand>
             </FirstLogonCommands>
