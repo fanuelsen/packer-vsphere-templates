@@ -17,6 +17,11 @@ url_win2019=https://www.microsoft.com/en-US/evalcenter/evaluate-windows-server-2
 iso_win2019=$(curl "$url_win2019" | grep .iso | grep en-us | sed -ne 's/.*\(https[^"]*\).*/\1/p' | sed 's/&quot;//g' | tr -d "\r" )
 sha256_win2019=$(curl -s "$iso_win2019" | openssl sha256)
 
+echo "==> Getting latest windows server 2022 iso url, this takes time..."
+url_win2022=https://www.microsoft.com/en-US/evalcenter/evaluate-windows-server-2022?filetype=ISO
+iso_win2022=$(curl "$url_win2022" | grep .iso | grep en-us | sed -ne 's/.*\(https[^"]*\).*/\1/p' | sed 's/&quot;//g' | tr -d "\r" )
+sha256_win2022=$(curl -s "$iso_win2022" | openssl sha256)
+
 echo "==> Setting windows 10 iso path manually as this is impossible to curl"
 iso_win10=iso/Win10_20H2_Norwegian_x64.iso
 sha256_win10="e8887540923f793a39a90ec0bb4cd0fc1fa2d4bd9f8c3c9c87f71962fc3e816b"
@@ -32,6 +37,8 @@ cat > isovars.json <<EOF
   "iso_checksum_win2012": "$sha256_win2012",
   "iso_url_win2019": "$iso_win2019",
   "iso_checksum_win2019": "$sha256_win2019",
+  "iso_url_win2022": "$iso_win2022",
+  "iso_checksum_win2022": "$sha256_win2022",
   "iso_url_win10": "$iso_win10",
   "iso_checksum_win10": "$sha256_win10",
   "iso_checksum_type": "sha256"

@@ -4,3 +4,6 @@ environment2.sh
 .DS_Store
 /iso
 packerlog.txt
+17763.737.190906-2324.rs5_release_svc_refresh_SERVER_EVAL_x64FRE_en-us_1.iso
+packer
+packer-provisioner-windows-update
