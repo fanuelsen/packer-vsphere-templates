@@ -143,6 +143,15 @@
                     <Order>4</Order>
                     <RequiresUserInput>true</RequiresUserInput>
                 </SynchronousCommand>
+                <SynchronousCommand wcm:action="add">
+                    <CommandLine>%SystemRoot%\system32\WindowsPowerShell\v1.0\powershell.exe -Command dism /online /quiet /set-edition:ServerDatacenter /productkey:WX4NM-KYWYW-QJJR4-XV3QB-6VM33 /accepteula</CommandLine>
+                    <Order>5</Order>
+                    <Description>Switch from EVAL to VL</Description>
+                </SynchronousCommand>
+                <CommandLine>%SystemRoot%\system32\WindowsPowerShell\v1.0\powershell.exe -Command shutdown -r -t 60</CommandLine>
+                    <Order>6</Order>
+                    <Description>Reboot after 60 sec</Description>
+                </SynchronousCommand>
             </FirstLogonCommands>
             <OOBE>
                 <HideEULAPage>true</HideEULAPage>
@@ -160,16 +169,6 @@
                 </AdministratorPassword>
             </UserAccounts>
             <RegisteredOwner/>
-        </component>
-        <component name="Microsoft-Windows-Deployment" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-            <RunSynchronous>
-                <RunSynchronousCommand wcm:action="add">
-                    <Order>1</Order>
-                    <Path>%SystemRoot%\system32\WindowsPowerShell\v1.0\powershell.exe -Command dism /online /quiet /set-edition:ServerDatacenter /productkey:WX4NM-KYWYW-QJJR4-XV3QB-6VM33 /accepteula<</Path>
-                    <Description>Switch from EVAL to VL</Description>
-                    <WillReboot>Always</WillReboot>
-                </RunSynchronousCommand>
-            </RunSynchronous>
         </component>
     </settings>
     <settings pass="offlineServicing">
