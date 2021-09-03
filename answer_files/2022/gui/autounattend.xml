@@ -146,6 +146,7 @@
                 <SynchronousCommand wcm:action="add">
                     <CommandLine>%SystemRoot%\system32\WindowsPowerShell\v1.0\powershell.exe -Command dism /online /quiet /set-edition:ServerDatacenter /productkey:WX4NM-KYWYW-QJJR4-XV3QB-6VM33 /accepteula</CommandLine>
                     <Order>5</Order>
+                    <WillReboot>Always</WillReboot>
                     <Description>Switch from EVAL to VL</Description>
                 </SynchronousCommand>
             </FirstLogonCommands>
