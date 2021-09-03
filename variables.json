@@ -4,6 +4,8 @@
   "vm_name_2012_gui": "windows-2012-gui",
   "vm_name_2019_gui": "windows-2019-gui",
   "vm_name_2019_core": "windows-2019-core",
+  "vm_name_2022_gui": "windows-2022-gui",
+  "vm_name_2022_core": "windows-2022-core",
   "vm_name_win10": "windows-10",
   
   "vcenter_server":"{{ env `VCENTER_SERVER` }}",
