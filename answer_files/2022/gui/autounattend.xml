@@ -148,6 +148,11 @@
                     <Order>5</Order>
                     <Description>Switch from EVAL to VL</Description>
                 </SynchronousCommand>
+                <SynchronousCommand wcm:action="add">
+                    <CommandLine>%SystemRoot%\system32\WindowsPowerShell\v1.0\powershell.exe -Command shutdown -r -t 60</CommandLine>
+                    <Order>6</Order>
+                    <Description>reboot</Description>
+                </SynchronousCommand>
             </FirstLogonCommands>
             <OOBE>
                 <HideEULAPage>true</HideEULAPage>
