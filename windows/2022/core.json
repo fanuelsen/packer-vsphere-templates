@@ -1,0 +1,95 @@
+{
+  "builders": [
+    {
+      "type": "vsphere-iso",
+      "guest_os_type": "windows9Server64Guest",
+      "vm_name": "{{ user `vm_name_2022_core` }}",
+      "cpus": "{{ user `vm_cpu_num` }}",
+      "ram": "{{ user `vm_mem_size` }}",
+      "disk_controller_type": "lsilogic-sas",
+      "insecure_connection": "true",
+      "vcenter_server": "{{user `vcenter_server`}}",
+      "datacenter": "{{user `vsphere_datacenter`}}",
+      "cluster": "{{user `vsphere_cluster`}}",
+      "datastore": "{{user `vsphere_datastore`}}",
+      "username": "{{ user `vcenter_username` }}",
+      "password": "{{ user `vcenter_password` }}",
+      "folder": "{{user `folder`}}",
+      "convert_to_template": true,
+      "iso_checksum": "{{ user `iso_checksum_type` }}:{{ user `iso_checksum_win2022` }}",
+      "iso_url": "{{ user `iso_url_win2022` }}",
+      "ip_wait_timeout": "50m",
+      "boot_wait": "{{ user `vm_boot_wait` }}",
+      "communicator": "winrm",
+      "winrm_insecure": true,
+      "winrm_password": "{{ user `winrm_password` }}",
+      "winrm_timeout": "8h",
+      "winrm_use_ssl": true,
+      "winrm_username": "{{ user `winrm_username` }}",
+      "notes": "{{ isotime }}",
+      "shutdown_command": "shutdown /s /t 5 /f /d p:4:1 /c \"Packer Shutdown\"",
+      "shutdown_timeout": "30m",
+      "floppy_files": [
+        "answer_files/2022/core/autounattend.xml",
+        "scripts/vmware_tools.ps1"
+      ],
+      "network_adapters": [
+        {
+          "network": "{{ user `vsphere_network` }}",
+          "network_card": "vmxnet3"
+        }
+      ],
+        "iso_paths": [
+          "[] /vmimages/tools-isoimages/windows.iso"
+      ],
+      "storage": [
+        {
+          "disk_size": "{{ user `vm_disk_size` }}",
+          "disk_thin_provisioned": true
+        }
+      ]
+    },
+    {
+      "type": "virtualbox-iso",
+      "guest_os_type": "{{ user `vbox_guest_type` }}",
+      "vm_name": "{{ user `vm_name_2022_core` }}",
+      "iso_url": "{{ user `iso_url_win2022` }}",
+      "iso_checksum": "{{ user `iso_checksum_win2022` }}",
+      "guest_additions_mode": "disable",
+      "headless": false,
+      "boot_wait": "{{ user `vm_boot_wait` }}",
+      "disk_size": "{{ user `vm_disk_size` }}",
+      "communicator": "winrm",
+      "winrm_username": "{{ user `winrm_username` }}",
+      "winrm_password": "{{ user `winrm_password` }}",
+      "winrm_use_ssl": true,
+      "winrm_insecure": true,
+      "winrm_timeout": "4h",
+      "floppy_files": [
+        "answer_files/2022/core/autounattend.xml"
+      ],
+      "shutdown_command": "shutdown /s /t 5 /f /d p:4:1 /c \"Packer Shutdown\"",
+      "shutdown_timeout": "1h",
+      "vboxmanage": [
+        ["modifyvm","{{ .Name }}","--memory","{{ user `vm_mem_size` }}"],
+        ["modifyvm","{{ .Name }}","--cpus","{{ user `vm_cpu_num` }}"]
+      ]
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "powershell",
+      "only": ["virtualbox-iso"],
+      "scripts": ["scripts/virtualbox-guest-additions.ps1"],
+      "pause_before": "1m"
+    },
+    {
+      "type": "windows-restart",
+      "only": ["virtualbox-iso"],
+      "restart_timeout": "30m"
+    },
+    {
+      "type": "windows-update"
+    }
+  ]
+}
