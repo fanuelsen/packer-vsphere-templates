@@ -6,7 +6,7 @@ steps:
 - name: build-ubuntu
   image: harbor.horten.kommune.no/library/packer
   commands:
-     - echo $VSPHERE_DATASTORE
+     - echo $VSPHERE_DATASTORE > /tmp/vars
      - packer build -force -only=vsphere-iso -var-file=variables.json -var-file=isovars.json ./linux/ubuntu/ubuntu2004.json
   environment:
     VCENTER_SERVER:
